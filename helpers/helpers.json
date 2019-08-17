@@ -1,0 +1,31 @@
+[
+  {
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "base",
+    "find": "<desc>",
+    "replace": "Testing helpers in  base languange"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "en",
+    "find": "<desc>",
+    "replace": "testing helpers in english languange"
+  },{
+    "use":"after_compile",
+    "comment":"Replace on en assets",
+    "app_mode" : "development",
+    "sub_dir" : "en",
+    "find" :  "assets",
+    "replace" : "../assets" 
+  },{
+    "use":"after_compile",
+    "comment":"Replace on  deploy  assets",
+    "app_mode" : "deploy",
+    "sub_dir" : "all",
+    "find" :  "assets",
+    "replace" : "/assets" 
+  }
+]

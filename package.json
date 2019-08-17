@@ -1,0 +1,45 @@
+{
+  "name": "templater",
+  "version": "1.0.0",
+  "description": "this is vocomvest limited engine",
+  "main": "bin/compiler.js",
+  "scripts": {
+    "dev": "concurrently \"npm run watch\" \"node bin/compiler.js\" \"node server.js\"",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "serve": "node_modules/live-server/live-server.js --middleware=./live-server.js --open=/dist/",
+    "compile": "node bin/compile.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "author": "tofikhidayat",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "concurrently": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "dotenv": "^8.0.0",
+    "edge.js": "^1.1.4",
+    "fs": "0.0.2",
+    "fs-extra": "^8.1.0",
+    "html-formatter": "^0.1.9",
+    "imagemin": "^7.0.0",
+    "laravel-mix": "^4.1.2",
+    "live-server": "^1.2.1",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
+    "recursive-readdir": "^2.2.2",
+    "sass-loader": "^7.2.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "iOS >= 8",
+    "Safari >= 8",
+    "ie >= 9",
+    "ie 7",
+    "ie 6",
+    "last 2 versions"
+  ]
+}

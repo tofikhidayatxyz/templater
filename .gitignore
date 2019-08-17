@@ -1,0 +1,11 @@
+mix-manifest.json
+package-lock.json
+node_modules
+proto
+proto/*
+*proto/*
+preview/*
+preview
+*.sketch
+*.pem
+

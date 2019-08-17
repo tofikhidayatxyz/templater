@@ -1,0 +1,107 @@
+[
+  {
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "all",
+    "find": "<fb_id>",
+    "replace": "429300321209901"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "base",
+    "find": "<description>",
+    "replace": "kayuku adalah penyedia layanan e-commerce untuk para pengrajin dari indonesia khususnya untuk para pengrajin  yang berbahan dasar kayu agar dapat memasarkan produk mereka hingga manca negara , kami juga menyediakan  platform pembuatan desain 3d untuk di buat oleh para pengrajin pengrajin kami"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "en",
+    "find": "<description>",
+    "replace": "Kayuku is an e-commerce service provider for craftsmen from Indonesia especially for wood-based craftsmen to be able to market their products overseas, we also provide a 3D design creation platform to be made by our craftsmen craftsmen"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "all",
+    "find": "<url>",
+    "replace": "https://kayuku.netlify.com"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "base",
+    "find": "<locale>",
+    "replace": "id"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "en",
+    "find": "<locale>",
+    "replace": "en"
+  }
+   ,{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "base",
+    "find": "<author>",
+    "replace": "FlipsFlopsTeam"
+  }
+  ,{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "base",
+    "find": "<type>",
+    "replace": "e-commerce,kayu,kayuku,pengrajin,pemasaran,3d,buatdesain,desain,mewah,kursi,meja"
+  },{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "en",
+    "find": "<type>",
+    "replace": "e-commerce,wood,kayuku,craftsmen,marketing,3d,makedegsign,design,luxury,chair,table"
+  }
+  ,{
+    "use":"after_compile",
+    "comment":"testing replacement",
+    "app_mode": "all",
+    "sub_dir": "all",
+    "find": "<app_name>",
+    "replace": "kayuku"
+  }
+ 
+  ,{
+    "use":"after_compile",
+    "comment":"Replace on en assets",
+    "app_mode" : "all",
+    "sub_dir" : "en",
+    "find" :  "assets",
+    "replace" : "../assets" 
+  },{
+    "use":"after_compile",
+    "comment":"Replace on  deploy  assets",
+    "app_mode" : "deploy",
+    "sub_dir" : "all",
+    "find" :  "assets",
+    "replace" : "/assets" 
+  }
+  ,{
+    "use":"after_compile",
+    "comment":"Replace on en assets",
+    "app_mode" : "all",
+    "sub_dir" : "en",
+    "find" :  "storages",
+    "replace" : "../storages" 
+  },{
+    "use":"after_compile",
+    "comment":"Replace on  deploy  assets",
+    "app_mode" : "deploy",
+    "sub_dir" : "all",
+    "find" :  "storages",
+    "replace" : "/storages" 
+  }
+]
