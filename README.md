@@ -10,6 +10,7 @@ $ yarn install
 ```
 ### Configure Enviroment file
 - Copy file .env.example to .env
+
 ### Start Development Server
 ```bash
 # serve with hot reload at localhost:8080
