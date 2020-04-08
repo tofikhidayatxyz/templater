@@ -28,3 +28,6 @@ I made this template when my friend and I took part in a competition about websi
 I hope this template will be able to help other people to develop their website
 
 This template is based on nodejs and the template engine of adonisjs is called edge and assets management webpack mix from laravel
+
+## Example project 
+[http://kayuku.netlify.com/en](http://kayuku.netlify.com/en)
