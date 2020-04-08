@@ -20,6 +20,7 @@ $ yarn dev
 ```bash
 $ yarn build
 ```
+And you can find your compiled file html , css js and etc in dist directory  
 
 ## History
 I made this template when my friend and I took part in a competition about websites, at that time I thought it was impossible to create a website with many pages without assistance. At that time our team consisted of only two people, one designer and one programmer, since then I developed the template this is so easy to use even though the initial version is very messy because there is less time to develop it in the end we have to refactor the header on 105 pages but thanks to this template we only need to change 2 files only, and finally we managed to win the race with 2 friends we won second place and he also used a template,
