@@ -1,10 +1,5 @@
-html , body {
-	padding:0;
-	margin: 0;
-	box-sizing: border-box;
-	overflow-x: hidden;
-}
+@import '_plugins/variables';
+@import '_plugins/mixin';
 
-a {
-	display: inline-block;
-}
+@import '~bootstrap/scss/bootstrap';
+

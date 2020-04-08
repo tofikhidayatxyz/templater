@@ -1,1 +1,2 @@
-console.log('hello')
+require('./bootstrap')
+// Your code at here
