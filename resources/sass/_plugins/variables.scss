@@ -1,0 +1,26 @@
+/*
+Define bootstrap variable
+*/
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'roboto', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+$theme-colors: (
+  "primary":#4768FD,
+  "dark":#3D3D3D,
+  "secondary":#C8C8C8,
+  "dark-blue":#05346A,
+  "light-blue":#6481A4,
+  "warning":#FF6C02,
+  "yellow":#FDD22E,
+  "grey":#FAFAFA,
+  "cyan":#03DAC4,
+  "semi-blue":#6681A5,
+  "danger":#FF2B2B,
+  "grey-base":$body-bg
+);

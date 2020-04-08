@@ -8,4 +8,4 @@ preview/*
 preview
 *.sketch
 *.pem
-
+.env
