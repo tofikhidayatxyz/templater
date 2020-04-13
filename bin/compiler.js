@@ -1,5 +1,5 @@
 "use strict"
-const env = require('dotenv').config();
+const config = require('../config')
 const path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra');
@@ -7,11 +7,11 @@ const formatter = require('html-formatter');
 const recursive = require("recursive-readdir");
 const edge = require('edge.js');
 const chokidar = require('chokidar');
-const base_dir = path.normalize(__dirname.split("bin").join("") + process.env.RESOURCES_DIR + '/views');
-const public_dir = path.normalize(__dirname.split("bin").join("") + process.env.PUBLIC_DIR);
-const protected_dir = JSON.parse(process.env.LAYOUT_DIR);
-const app_mode = process.env.APP_MODE
-const sub_dir = JSON.parse(process.env.SUB_DIR);
+const base_dir = path.normalize(__dirname.split("bin").join("") + config.resouces_dir + '/views');
+const public_dir = path.normalize(__dirname.split("bin").join("") + config.public_dir);
+const protected_dir = config.layout_dir;
+const app_mode = config.app_mode
+const sub_dir = config.sub_dir;
 const helpers = require('../helpers/helpers.js');
 /**
  ** set edge views dir 
@@ -48,7 +48,7 @@ function compile(item) {
    **/
   try {
     var rendered = edge.render(file, {
-      env: process.env
+      env: config
     })
 
     /**
@@ -62,7 +62,7 @@ function compile(item) {
         if (replacement[i]["sub_dir"] == "all" || replacement[i]["sub_dir"] == lang_mode) {
           rendered = rendered.split(replacement[i]["find"]).join(replacement[i]["replace"]);
         }
-      } else if (replacement[i]["app_mode"] == process.env.APP_MODE) {
+      } else if (replacement[i]["app_mode"] == config.app_mode) {
         if (replacement[i]["sub_dir"] == "all" || replacement[i]["sub_dir"] == lang_mode) {
           rendered = rendered.split(replacement[i]["find"]).join(replacement[i]["replace"]);
         }
@@ -74,7 +74,7 @@ function compile(item) {
     files   : item
    })
   }
-  rendered  =  (process.env.PRETIFY == "true" ? formatter.render(rendered) : rendered);
+  rendered  =  (config.pretify == "true" ? formatter.render(rendered) : rendered);
      write(file.split(".edge").join(".html"), rendered); 
 }
 /**
@@ -118,7 +118,7 @@ function rendererAll() {
  ** this handle watcher 
  ** use chokidar
  **/
-if (process.env.APP_MODE == "development") {
+if (config.app_mode == "development") {
   const watcher = chokidar.watch(base_dir);
   watcher
     .on('add', async  function (file) {
