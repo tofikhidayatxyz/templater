@@ -1,48 +1,63 @@
-"use strict"
+'use strict'
 const config = require('../config')
-const path = require('path');
-const fs = require('fs');
-const fse = require('fs-extra');
-const formatter = require('html-formatter');
-const recursive = require("recursive-readdir");
-const edge = require('edge.js');
-const chokidar = require('chokidar');
-const base_dir = path.normalize(__dirname.split("bin").join("") + config.resouces_dir + '/views');
-const public_dir = path.normalize(__dirname.split("bin").join("") + config.public_dir);
-const protected_dir = config.layout_dir;
+const path = require('path')
+const fs = require('fs')
+const fse = require('fs-extra')
+const formatter = require('html-formatter')
+const minify = require('html-minifier').minify
+const recursive = require('recursive-readdir')
+const edge = require('edge.js')
+const pretty = require('pretty')
+const chokidar = require('chokidar')
+const base_dir = path.normalize(
+  __dirname.split('bin').join('') + config.resources_dir + '/views'
+)
+const public_dir = path.normalize(
+  __dirname.split('bin').join('') + config.public_dir
+)
+
+const protected_dir = config.layout_dir
 const app_mode = config.app_mode
-const sub_dir = config.sub_dir;
-const helpers = require('../helpers/helpers.js');
+const sub_dir = config.sub_dir
+const helpers = require('../helpers/helpers.js')
 /**
- ** set edge views dir 
+ ** set edge views dir
  **/
-edge.registerViews(path.join(base_dir));
+edge.registerViews(path.join(base_dir))
 /**
  ** this handle protector directory
  ** @param disable compile file on directory
  **/
 async function protector(file) {
-  var red =  null;
+  var red = null
   for (var i = 0; i < protected_dir.length; i++) {
-     if (file.includes(protected_dir[i])) {
-        return null;
-     }
+    if (file.includes(protected_dir[i])) {
+      return null
+    }
   }
-  return file;
+  return file
 }
 /**
  ** this handle compile data
  ** set compiler by edge adonis
  **/
 function compile(item) {
-  var  replacement = fs.readFileSync(path.normalize(__dirname.replace("bin","")+"helpers/helpers_after_compile.json"));
-  var  rcf         = fs.readFileSync(path.normalize(__dirname.replace("bin","")+"helpers/helpers_before_compile.json"));
+  var replacement = fs.readFileSync(
+    path.normalize(
+      __dirname.replace('bin', '') + 'helpers/helpers_after_compile.json'
+    )
+  )
+  var rcf = fs.readFileSync(
+    path.normalize(
+      __dirname.replace('bin', '') + 'helpers/helpers_before_compile.json'
+    )
+  )
   try {
-    replacement  = JSON.parse(replacement);
-  } catch(e) {
-    console.warn(e);
+    ///replacement  = JSON.parse(replacement);
+  } catch (e) {
+    //console.warn(e);
   }
-  var file = path.normalize(item.split( path.normalize(base_dir + "/")).join(""));
+  var file = path.normalize(item.split(path.normalize(base_dir + '/')).join(''))
   /**
    ** call helpers with editebe component helpers
    **/
@@ -54,90 +69,118 @@ function compile(item) {
     /**
      ** replace components
      **/
+    ///console.log(sub_dir)
     for (var i = 0; i < sub_dir.length; i++) {
-      var lang_mode = (item.includes("/"+sub_dir+"/") == true ? sub_dir[i] : "base");
+      var lang_mode =
+        item.includes('/' + sub_dir + '/') == true ? sub_dir[i] : 'base'
     }
     for (var i = 0; i < replacement.length; i++) {
-      if (replacement[i]["app_mode"] == "all") {
-        if (replacement[i]["sub_dir"] == "all" || replacement[i]["sub_dir"] == lang_mode) {
-          rendered = rendered.split(replacement[i]["find"]).join(replacement[i]["replace"]);
+      if (replacement[i]['app_mode'] == 'all') {
+        if (
+          replacement[i]['sub_dir'] == 'all' ||
+          replacement[i]['sub_dir'] == lang_mode
+        ) {
+          rendered = rendered
+            .split(replacement[i]['find'])
+            .join(replacement[i]['replace'])
         }
-      } else if (replacement[i]["app_mode"] == config.app_mode) {
-        if (replacement[i]["sub_dir"] == "all" || replacement[i]["sub_dir"] == lang_mode) {
-          rendered = rendered.split(replacement[i]["find"]).join(replacement[i]["replace"]);
+      } else if (replacement[i]['app_mode'] == config.app_mode) {
+        if (
+          replacement[i]['sub_dir'] == 'all' ||
+          replacement[i]['sub_dir'] == lang_mode
+        ) {
+          rendered = rendered
+            .split(replacement[i]['find'])
+            .join(replacement[i]['replace'])
         }
       }
     }
   } catch (e) {
-   rendered  =  edge.render(path.normalize('layouts/woops-errors'),{
-    errors  : e.toString(),
-    files   : item
-   })
+    rendered = edge.render(path.normalize('layouts/woops-errors'), {
+      errors: e.toString(),
+      files: item
+    })
   }
-  rendered  =  (config.pretify == "true" ? formatter.render(rendered) : rendered);
-     write(file.split(".edge").join(".html"), rendered); 
+
+  rendered = config.pretify ? pretty(rendered) : rendered
+  rendered = process.env.MINIFY
+    ? minify(rendered, {
+        html5: true,
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        collapseInlineTagWhitespace: true,
+        continueOnParseError: true
+      })
+    : rendered
+  write(file.split('.edge').join('.html'), rendered)
 }
+
 /**
  ** this handle wariitng file
  **/
 function write(name, data) {
-  var target_dir = public_dir + "/" + name;
+  var target_dir = public_dir + '/' + name
   try {
     fse.outputFile(target_dir, data, function (err) {
       if (err) {
-        console.log(err)
+        console.log('err: ' + err)
       } else {
-        console.log("writted " + target_dir)
+        console.log('writted ' + target_dir)
       }
-    });
+    })
   } catch (err) {
-    console.log(err);
+    console.log('err: ' + err)
   }
 }
 /**
  ** handle rendering all components
  **/
+
 function rendererAll() {
   recursive(base_dir, async function (err, files) {
     if (err) {
-      console.log(err)
+      // console.log(err)
     } else {
       for (var i = 0; i < files.length; i++) {
         if (await protector(files[i])) {
           for (var j = 0; j < sub_dir.length; j++) {
-            if (files.includes(sub_dir[j]) == false && files[i].includes('.edge') == true && protector(files[i])) {
+            if (
+              files.includes(sub_dir[j]) == false &&
+              files[i].includes('.edge') == true &&
+              protector(files[i])
+            ) {
               compile(files[i])
             }
           }
         }
       }
     }
-  });
+  })
 }
 /**
- ** this handle watcher 
+ ** this handle watcher
  ** use chokidar
  **/
-if (config.app_mode == "development") {
-  const watcher = chokidar.watch(base_dir);
+if (process.env.NODE_ENV == 'development') {
+  const watcher = chokidar.watch(base_dir)
   watcher
-    .on('add', async  function (file) {
+    .on('add', async function (file) {
       if (await protector(file)) {
-         compile(file)
+        compile(file)
       }
     })
-    .on('change', async  function (file) {
-      console.log("File was changed " + file)
-      if ( await protector(file) ) {
+    .on('change', async function (file) {
+      console.log('File was changed ' + file)
+      if (await protector(file)) {
         compile(file)
       } else {
         rendererAll()
       }
     })
     .on('unlink', function (file) {
-      console.log("File was removed " + file)
-      console.log("removed :  " + file)
+      console.log('File was removed ' + file)
+      console.log('removed :  ' + file)
     })
 } else {
-  rendererAll();
+  rendererAll()
 }
