@@ -1,4 +1,5 @@
-@import '_plugins/variables';
+@import '_plugins/bootstrap';
 @import '_plugins/mixin';
 
-@import '~bootstrap/scss/bootstrap';
+//import page
+@import '_pages/index';
