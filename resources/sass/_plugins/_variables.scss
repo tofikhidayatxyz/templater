@@ -1,26 +1,30 @@
-/*
-Define bootstrap variable
-*/
-
-// Body
-$body-bg: #f8fafc;
+$body-bg: #f9f9f9;
 
 // Typography
-$font-family-sans-serif: 'roboto', sans-serif;
+$font-family-sans-serif: AzoSans, sans-serif;
 $font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$line-height-base: 1.7;
 
 $theme-colors: (
-  "primary":#4768FD,
-  "dark":#3D3D3D,
-  "secondary":#C8C8C8,
-  "dark-blue":#05346A,
-  "light-blue":#6481A4,
-  "warning":#FF6C02,
-  "yellow":#FDD22E,
-  "grey":#FAFAFA,
-  "cyan":#03DAC4,
-  "semi-blue":#6681A5,
-  "danger":#FF2B2B,
-  "grey-base":$body-bg
+  'primary': #57a9dd,
+  'light': #f8f8f9,
+  'dark': #393939,
+  'soft-dark': #292929,
+  'grey-25': #c3c3c3,
+  'soft-grey': #edf2f8,
+  'light-grey': #e6e6e6,
+  'semi-grey': #d3d5d9,
+  'grey': #626262,
+  'dark-grey': #c6cacd,
+  'secondary': #c8c8c8,
+  'dark-blue': #40488f,
+  'light-blue': #57a9dd,
+  'warning': #ff6c02,
+  'yellow': #fdd22e,
+  'cyan': #03dac4,
+  'semi-blue': #6681a5,
+  'danger': #ff2b2b,
+  'dark-violet': #3e468e,
+  'placeholder': #989e9d,
+  'grey-base': $body-bg
 );

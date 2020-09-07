@@ -1,5 +1,5 @@
 {
-  "app_name": "Belilah",
+  "app_name": "Development Mode",
   "app_mode": "development",
   "resources_dir": "resources",
   "layout_dir": ["layouts", "components"],
