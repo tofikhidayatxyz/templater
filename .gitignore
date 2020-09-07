@@ -9,3 +9,6 @@ preview
 *.sketch
 *.pem
 .env
+dist/**.html
+#dist/assets/js/*.js
+#dist/assets/css/*.css
