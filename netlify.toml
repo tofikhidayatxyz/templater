@@ -1,0 +1,5 @@
+[build]
+    base = "./"
+    publish = "dist/"
+    command = "npm run compile && npm run prod"
+    NODE_ENV = "production"
