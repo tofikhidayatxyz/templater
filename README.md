@@ -8,8 +8,10 @@ $ git clone https://github.com/tofikhidayat/templater your_project_name
 $ cd your_project_name
 $ yarn install
 ```
+
 ### Configure Enviroment file
 - Copy file .env.example to .env
+- Template engine dodumentation [http://edge.adonisjs.com/docs](http://edge.adonisjs.com/docs)
 
 ### Start Development Server
 ```bash
