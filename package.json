@@ -24,7 +24,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
-    "edge.js": "^1.1.4",
+    "edge.js": "^5.3.2",
     "fs": "0.0.2",
     "fs-extra": "^9.0.1",
     "html-formatter": "^0.1.9",
